@@ -18,12 +18,11 @@ services:
     etcd-client:
       networks:
         - app-tier
-      image: gcr.io/etcd-development/etcd:v3.3.10
+      build: etcdClient
       depends_on: 
         - etcd-server
       environment:
         - ETCDCTL_API=3
-      command: ["etcdctl","--endpoints","http://etcd-server:2379","put","/message","Hello"]
 networks:
     app-tier:
 volumes:
