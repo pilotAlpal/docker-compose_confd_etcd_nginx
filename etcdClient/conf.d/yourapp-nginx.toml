@@ -1,0 +1,13 @@
+[template]
+prefix = "/yourapp"
+src = "nginx.tmpl"
+dest = "/tmp/yourapp.conf"
+owner = "nginx"
+mode = "0644"
+keys = [
+  "/subdomain",
+  "/upstream",
+]
+check_cmd = "/usr/sbin/nginx -t -c {{.src}}"
+reload_cmd = "/usr/sbin/service nginx reload"
+
