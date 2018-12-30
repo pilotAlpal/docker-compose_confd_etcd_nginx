@@ -14,8 +14,6 @@ RUN apk add --no-cache \
 
 FROM gcr.io/etcd-development/etcd:v3.3.10
 # Add keys https://github.com/kelseyhightower/confd/blob/master/docs/quick-start-guide.md#add-keys-1
-CMD ["etcdctl","--endpoints","http://etcd-server:2379","put","/myapp/database/url","db.example.com"]
-CMD ["etcdctl","--endpoints","http://etcd-server:2379","put","/myapp/database/user","rob"]
 COPY confd_sample1 /etc/confd
 COPY --from=confd /go/bin/confd /usr/local/bin/confd
-CMD /usr/local/bin/confd -onetime -backend etcd -node http://etcd-server:2379
+CMD etcdctl --endpoints http://etcd-server:2379 set /myapp/database/url db.example.com && etcdctl --endpoints http://etcd-server:2379 set /myapp/database/user rob && /usr/local/bin/confd -onetime -backend etcd -node http://etcd-server:2379 && cat /tmp/myconfig.conf

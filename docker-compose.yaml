@@ -21,8 +21,8 @@ services:
       build: etcdClient
       depends_on: 
         - etcd-server
-      environment:
-        - ETCDCTL_API=3
+#      environment:
+#        - ETCDCTL_API=3
 networks:
     app-tier:
 volumes:
