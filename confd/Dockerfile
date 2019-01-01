@@ -11,11 +11,6 @@ RUN apk add --no-cache \
   go install github.com/kelseyhightower/confd && \
   rm -rf /tmp/v${CONFD_VERSION}.tar.gz
 
-
-FROM gcr.io/etcd-development/etcd:v3.3.10
-# Add keys https://github.com/kelseyhightower/confd/blob/master/docs/quick-start-guide.md#add-keys-1
 COPY confd_sample1 /etc/confd
-COPY --from=confd /go/bin/confd /usr/local/bin/confd
-#CMD etcdctl --endpoints http://etcd-server:2379 set /myapp/database/url db.example.com && etcdctl --endpoints http://etcd-server:2379 set /myapp/database/user rob && /usr/local/bin/confd -onetime -backend etcd -node http://etcd-server:2379 && cat /tmp/myconfig.conf
-CMD /usr/local/bin/confd -onetime -backend etcd -node http://etcd-server:2379 && cat /tmp/myconfig.conf
+CMD /go/bin/confd -onetime -backend etcd -node http://etcd-server:2379 && cat /tmp/myconfig.conf
 
