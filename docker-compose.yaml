@@ -29,7 +29,7 @@ services:
         - etcd-server
       environment:
         - ALLOW_NONE_AUTHENTICATION='yes'
-      entrypoint: insert/entrypoint.sh
+#      entrypoint: insert/entrypoint.sh
 networks:
     app-tier:
 volumes:
