@@ -29,8 +29,12 @@ services:
         - etcd-server
       environment:
         - ALLOW_NONE_AUTHENTICATION='yes'
-#      entrypoint: insert/entrypoint.sh
+    py-app:
+      networks:
+        - app-tier
+      build: pyApp
+#      depends_on: nginx
 networks:
     app-tier:
 volumes:
-    etcd_data:
+ etcd-data:
