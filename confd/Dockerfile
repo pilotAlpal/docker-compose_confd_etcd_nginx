@@ -11,8 +11,11 @@ RUN apk add --no-cache \
   go install github.com/kelseyhightower/confd && \
   rm -rf /tmp/v${CONFD_VERSION}.tar.gz
 
+FROM nginx:alpine as nginx
+COPY --from=confd /go /go
 COPY confd_sample1 /etc/confd
-#CMD /go/bin/confd -onetime -backend etcd -node http://etcd-server:2379 && cat /tmp/myconfig.conf
+RUN apk add --no-cache openrc
+
 ADD start_service.sh ./start/entrypoint.sh
 RUN chmod +x ./start/entrypoint.sh
 CMD /bin/sh ./start/entrypoint.sh
