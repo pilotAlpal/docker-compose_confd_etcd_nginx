@@ -5,10 +5,10 @@ dest = "/tmp/myapp.conf"
 owner = "nginx"
 mode = "0644"
 keys = [
+  "/location",
   "/subdomain",
-  "/upstream",
+  "/proxytarget"
 ]
-#check_cmd = "nginx -t -c {{.src}}"
 #reload_cmd = "rc-service nginx reload"
 check_cmd = "nginx -t -c {{.src}}"
 reload_cmd = "nginx -s reload"

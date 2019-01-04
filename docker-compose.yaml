@@ -18,6 +18,8 @@ services:
     confd-nginx:
       networks:
         - app-tier
+      ports:
+        - "80:80"
       build: confdNginx
       depends_on: 
         - etcd-curl

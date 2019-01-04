@@ -5,9 +5,10 @@ import datetime
 app=Flask(__name__)
 @app.route('/time')
 def time():
-   ts = time.time()
-   dt = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-   return 'Date: %s' % dt
+    return 'Date'
+#   ts = time.time()
+#   dt = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+#   return 'Date: %s' % dt
 
 @app.route('/greet')
 def greet():
