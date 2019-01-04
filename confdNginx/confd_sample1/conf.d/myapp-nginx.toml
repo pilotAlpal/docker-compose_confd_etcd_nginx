@@ -11,4 +11,5 @@ keys = [
 ]
 #reload_cmd = "rc-service nginx reload"
 check_cmd = "nginx -t -c {{.src}}"
-reload_cmd = "nginx -s reload"
+#reload_cmd = "nginx -s reload"
+reload_cmd = "sh run/reload_nginx.sh"

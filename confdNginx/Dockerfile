@@ -17,5 +17,7 @@ COPY confd_sample1 /etc/confd
 #RUN apk add --no-cache openrc
 
 ADD start_service.sh ./start/entrypoint.sh
+ADD reload_nginx.sh ./run/reload_nginx.sh
 RUN chmod +x ./start/entrypoint.sh
+RUN chmod +x ./run/reload_nginx.sh
 CMD /bin/sh ./start/entrypoint.sh
