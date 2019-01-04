@@ -14,7 +14,7 @@ RUN apk add --no-cache \
 FROM nginx:alpine as nginx
 COPY --from=confd /go /go
 COPY confd_sample1 /etc/confd
-RUN apk add --no-cache openrc
+#RUN apk add --no-cache openrc
 
 ADD start_service.sh ./start/entrypoint.sh
 RUN chmod +x ./start/entrypoint.sh

@@ -15,10 +15,10 @@ services:
         - type: bind
           source: /tmp/etcd-data.tmp
           target: /etcd-data
-    confd:
+    confd-nginx:
       networks:
         - app-tier
-      build: confd
+      build: confdNginx
       depends_on: 
         - etcd-curl
     etcd-curl:
