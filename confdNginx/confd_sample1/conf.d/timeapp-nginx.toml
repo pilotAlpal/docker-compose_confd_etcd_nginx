@@ -1,0 +1,16 @@
+[template]
+prefix = "/tapp"
+src = "nginx.tmpl"
+dest = "/tmp/timeapp.conf"
+owner = "nginx"
+mode = "0644"
+keys = [
+  "/ti",
+  "/gr",
+  "/st"
+]
+#reload_cmd = "rc-service nginx reload"
+check_cmd = "nginx -t -c {{.src}}"
+#reload_cmd = "nginx -s reload"
+reload_cmd = "sh run/reload_nginx.sh"
+

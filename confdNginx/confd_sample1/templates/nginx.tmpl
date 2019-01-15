@@ -4,8 +4,16 @@ events {
 http {
 
 	server {
-	    location /{{getv "/location"}}/ {
-		proxy_pass        http://{{getv "/proxytarget"}};
+	    location /{{getv "/ti/location"}}/ {
+		proxy_pass        http://{{getv "/ti/proxytarget"}};
 	   }
+            location /{{getv "/gr/location"}}/ {
+                proxy_pass        http://{{getv "/gr/proxytarget"}};
+           }
+            location /{{getv "/st/location"}}/ {
+                root              {{getv "/st/root"}}; 
+                index             {{getv "/st/index"}};
+           }
 	}
 }
+

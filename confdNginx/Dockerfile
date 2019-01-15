@@ -14,7 +14,8 @@ RUN apk add --no-cache \
 FROM nginx:alpine as nginx
 COPY --from=confd /go /go
 COPY confd_sample1 /etc/confd
-#RUN apk add --no-cache openrc
+COPY nginx_init.conf /etc/nginx/nginx.conf
+COPY www_website /var/www/website.html
 
 ADD start_service.sh ./start/entrypoint.sh
 ADD reload_nginx.sh ./run/reload_nginx.sh
