@@ -1,4 +1,4 @@
-# confd - docker-compose - etcd
+# confd - docker-compose - etcd - nginx
 
 ## Abstract
 
@@ -13,24 +13,32 @@ docker-compose manages the following services:
 ---
 
 ## Flow
+
 - etcd-server: listens requests to http://etcd-server:2379/v2/
-- etcd-curl: inserts into etcd-server the following key-values (K , V):
-	- (/myapp/subdomain , localhost)
-	- (/myapp/location , get-time)
-	- (/myapp/proxytarget , py-app:8081/dtime)
+- etcd-curl: inserts values to etcd-server under "/tapp" prefix for "/ti", "/gr" and "/st" keys
 - py-app: listens to requests to http://py-app:8081
 - confd-nginx: confd updates nginx conf file in accordance with to values at etcd-server (setted by etcd-curl) and launches nginx acording to the file:
 	- Requests to localhost/get-time/ will be routed to http://py-app:8081/dtime   
+
+---
+
 ## Test
 
 Build and run services
+
 ```bash
 docker-compose up --build
 ```
-(From another shell) Request nginx and get python app´s response
+
+(From another shell) Request nginx and get python app´s responses and static content from html file
+
 ```bash
 curl localhost/get-time/
+curl localhost/be-greeted/ 
+curl localhost/www/
 ```
+
+---
 
 ## Sources and related links
 
